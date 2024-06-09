@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="2024.06.07_add_table_customers_book.xml" author="Fidan Ceferli" runOnChange="true">
+<!--        <preConditions onFail="MARK_RAN">-->
+<!--            <not>-->
+<!--                <tableExists tableName="customers_books"/>-->
+<!--            </not>-->
+<!--        </preConditions>-->
+
+        <createTable tableName="customers_books">
+        <column name="book_id" type="int">
+            <constraints nullable="false"/>
+        </column>
+        <column name="customer_id" type="int">
+            <constraints nullable="false"/>
+        </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="customers_books" baseColumnNames="book_id" constraintName="FK_customers_books_book_id" referencedTableName="book" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="customers_books" baseColumnNames="customer_id" constraintName="FK_customers_books_customer_id" referencedTableName="customer" referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>
